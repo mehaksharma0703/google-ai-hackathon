@@ -1,27 +1,31 @@
 import React from "react";
 import { NativeBaseProvider, Box, Select, CheckIcon } from 'native-base';
+import  Clothing  from './Clothing';
+import { useState } from 'react';
+import { Button, } from '@rneui/themed';
 
 export default function App() {
+  const [selectedCategory, setSelectedCategory] = useState('');
   return <NativeBaseProvider>
-    <Box width={200} mx="auto" my={5}>
-        <Select
-          selectedValue="js"
-          minWidth={200}
-          accessibilityLabel="Select a category"
-          placeholder="Select a Category"
-          _selectedItem={{
-            bg: "cyan.600",
-            endIcon: <CheckIcon size={4} />,
-          }}
-          mt={1}
-          onValueChange={(itemValue) => {
-            console.log(itemValue);
-          }}
-        >
-          <Select.Item label="JavaScript" value="js" />
-          <Select.Item label="TypeScript" value="ts" />
-          <Select.Item label="Python" value="py" />
-        </Select>
-      </Box>
+    <Box width={200} alignItems="center" justifyContent="center" mx="auto" my={90}>
+        
+      <Clothing onCategorySelect={setSelectedCategory}/>
+      <Button
+              title="Analyze"
+              loading={false}
+              loadingProps={{ size: 'small', color: 'white' }}
+              buttonStyle={{
+                backgroundColor: 'rgba(111, 202, 186, 1)',
+                borderRadius: 5,
+              }}
+              titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
+              containerStyle={{
+                height: 50,
+                width: 200,
+                marginVertical: 10,
+              }}
+              onPress={() => console.log('aye')}
+            />
+            </Box>
 </NativeBaseProvider>;
 }
