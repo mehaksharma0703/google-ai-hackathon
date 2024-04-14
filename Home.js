@@ -1,10 +1,7 @@
 import React from "react";
 import { StyleSheet } from 'react-native';
-import { NativeBaseProvider, Box, Select, CheckIcon } from 'native-base';
-import  Clothing  from './Clothing';
-import { useState } from 'react';
+import { NativeBaseProvider,} from 'native-base';
 
-import Main from './Main';
 import { View, } from 'react-native';
 import { Text, Button, Card } from '@rneui/themed';
 
@@ -13,19 +10,26 @@ export default function Home({ navigation }){
   return (
     <NativeBaseProvider>
     <View style={styles.container}>
-      <Text h4 style={styles.introText}>Welcome to our application!</Text>
-      <Text style={styles.introText}>This app is designed to help you find a celebrity to promote your business.</Text>
-      <Card>
+      <Text h4 style={styles.introText}>find the best Infuencers for your brand today!</Text>
+      
+      {/* <Card>
         <Card.Title>Meet our team:</Card.Title>
         <Card.Divider/>
         <Text style={styles.teamText}>- Siddhartha Renikuntla: Developer</Text>
         <Text style={styles.teamText}>- Mehak Sharma: Developer</Text>
         <Text style={styles.teamText}>- Deepan Krishna Tripaty: Developer</Text>
-      </Card>
+      </Card> */}
       <Button 
-        title="Let's Go" 
+        title="Get Started" 
+        style={styles.font}
         onPress={() => navigation.navigate('Main')} 
         containerStyle={styles.buttonContainer}
+        buttonStyle={{
+          backgroundColor: '#8855DD',
+          borderRadius: 20,
+          width: 200,
+        }}
+        titleStyle={{color:'#F1F518'}}
       />
     </View> 
     
@@ -43,6 +47,10 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       marginBottom: 20,
     },
+    font:{
+      fontFamily: 'montserrat Alternates',
+    },
+
     teamText: {
       marginBottom: 10,
     },

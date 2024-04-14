@@ -5,6 +5,7 @@ import { Text, Button, Card } from '@rneui/themed';
 
 
 export default function Main({onCategorySelect}) {
+
     const [selectedCategory, setSelectedCategory] = useState('');
     return (
 <NativeBaseProvider>
