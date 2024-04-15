@@ -8,41 +8,38 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 import Home from './Home';
-import Main from './Main'; 
-
+import Contact from './Contact';
+import About from './About';
+import Main from './Main';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
-// export default function App({navigation}) {
-//   const [selectedCategory, setSelectedCategory] = useState('');
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     padding: 20,
-//   },
-//   introText: {
-//     textAlign: 'center',
-//     marginBottom: 20,
-//   },
-//   teamText: {
-//     marginBottom: 10,
-//   },
-//   buttonContainer: {
-//     marginTop: 20,
-//   },
-// });
-
-const Stack = createStackNavigator();
 export default function App({navigation}){
   
   return (
     <NavigationContainer>
-     <Tab.Navigator  initialRouteName="Home"
-        screenOptions={{
+     <Tab.Navigator initialRouteName="Home"
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            
+    if (route.name === 'Home') {
+      iconName = focused ? 'home' : 'home-outline';
+    } else if (route.name === 'Contact') {
+      iconName = focused ? 'call' : 'call-outline';
+    } else if (route.name === 'About') {
+      iconName = focused ? 'information-circle' : 'information-circle-outline';
+    } else if (route.name === 'Get Started') {
+      iconName = focused ? 'rocket' : 'rocket-outline';
+    } else if (route.name === 'Main') {
+  iconName = focused ? 'list' : 'list-outline'; // changed icon for Menu
+}
+
+            return <Icon name={iconName} size={size} color={color} />;
+          },
           headerTitle: 'Profluencers',
           headerStyle: {
             backgroundColor: '#8855DD',
@@ -52,10 +49,18 @@ export default function App({navigation}){
             fontWeight: 'bold',
             color: '#F1F518',
           },
-        }}>
-        <Tab.Screen name="About" component={Home}/>
-        <Tab.Screen name="Contact" component={Main} />
+        })}
+        tabBarOptions={{
+          activeTintColor: '#8855DD',
+          inactiveTintColor: 'gray',
+        }}
+        
+        >
+       
         <Tab.Screen name="Get Started" component={Home} />
+        <Tab.Screen name="Main" component={Main} options={{ tabBarVisible: false }} />
+        <Tab.Screen name="About" component={About}/>
+        <Tab.Screen name="Contact" component={Contact} />
       </Tab.Navigator>
   </NavigationContainer>
   );
