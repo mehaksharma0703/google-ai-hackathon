@@ -10,7 +10,7 @@ export default function Home({ navigation }){
   return (
     <NativeBaseProvider>
     <View style={styles.container}>
-      <Text h4 style={styles.introText}>find the best Infuencers for your brand today!</Text>
+      <Text h4 style={styles.introText}>find the best Infuencers for your brand today in just few clicks!</Text>
       
       {/* <Card>
         <Card.Title>Meet our team:</Card.Title>
