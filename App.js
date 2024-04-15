@@ -8,7 +8,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 import Home from './Home';
 import Main from './Main';
 
@@ -56,6 +55,9 @@ export default function App({ navigation }) {
         <Tab.Screen name="About" component={Home} />
         <Tab.Screen name="Contact" component={Main} />
         <Tab.Screen name="Get Started" component={Home} />
+        <Tab.Screen name="Main" component={Main} options={{ tabBarVisible: false }} />
+        <Tab.Screen name="About" component={About} />
+        <Tab.Screen name="Contact" component={Contact} />
       </Tab.Navigator>
     </NavigationContainer>
   );
