@@ -10,7 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './Home';
-import Main from './Main'; 
+import Main from './Main';
 
 
 const Tab = createBottomTabNavigator();
@@ -37,11 +37,11 @@ const Tab = createBottomTabNavigator();
 // });
 
 const Stack = createStackNavigator();
-export default function App({navigation}){
-  
+export default function App({ navigation }) {
+
   return (
     <NavigationContainer>
-     <Tab.Navigator  initialRouteName="Home"
+      <Tab.Navigator initialRouteName="Home"
         screenOptions={{
           headerTitle: 'Profluencers',
           headerStyle: {
@@ -53,10 +53,10 @@ export default function App({navigation}){
             color: '#F1F518',
           },
         }}>
-        <Tab.Screen name="About" component={Home}/>
+        <Tab.Screen name="About" component={Home} />
         <Tab.Screen name="Contact" component={Main} />
         <Tab.Screen name="Get Started" component={Home} />
       </Tab.Navigator>
-  </NavigationContainer>
+    </NavigationContainer>
   );
-  }
+}
