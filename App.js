@@ -7,9 +7,13 @@
 
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './Home';
 import Main from './Main';
+import About from './About';
+import Contact from './Contact';
 
 
 const Tab = createBottomTabNavigator();
@@ -52,8 +56,6 @@ export default function App({ navigation }) {
             color: '#F1F518',
           },
         }}>
-        <Tab.Screen name="About" component={Home} />
-        <Tab.Screen name="Contact" component={Main} />
         <Tab.Screen name="Get Started" component={Home} />
         <Tab.Screen name="Main" component={Main} options={{ tabBarVisible: false }} />
         <Tab.Screen name="About" component={About} />
