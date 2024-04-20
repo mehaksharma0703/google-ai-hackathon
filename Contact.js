@@ -1,69 +1,109 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Linking, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-const Contact = () => {
-    const [name, setName] = useState('');
+const ContactUs = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
 
   const handleSubmit = () => {
-    // Handle form submission here
-    console.log(`Name: ${name}, Email: ${email}, Message: ${message}`);
+    // Submission logic here
+    console.log(name, email, phone, message);
   };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Name:</Text>
-      <TextInput style={styles.input} value={name} onChangeText={setName} />
+      <Text style={styles.header}>CONTACT US</Text>
 
-      <Text style={styles.label}>Email:</Text>
-      <TextInput style={styles.input} value={email} onChangeText={setEmail} />
-
-      <Text style={styles.label}>Message:</Text>
-      <TextInput style={styles.input} value={message} onChangeText={setMessage} multiline />
-
-      <Button title="Submit" onPress={handleSubmit} />
-
-      <View style={styles.linksContainer}>
-        <TouchableOpacity onPress={() => Linking.openURL('https://www.facebook.com')}>
-          <Icon name="facebook" size={30} color="#3b5998" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => Linking.openURL('https://www.github.com')}>
-          <Icon name="github" size={30} color="#000" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => Linking.openURL('https://www.linkedin.com')}>
-          <Icon name="linkedin" size={30} color="#0077b5" />
-        </TouchableOpacity>
+      <View style={styles.inputRow}>
+        <TextInput
+          style={styles.input}
+          placeholder="Name"
+          value={name}
+          onChangeText={setName}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Phone"
+          value={phone}
+          onChangeText={setPhone}
+        />
       </View>
+
+      <TextInput
+        style={styles.messageInput}
+        placeholder="Message"
+        value={message}
+        onChangeText={setMessage}
+        multiline
+      />
+
+      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+        <Text style={styles.buttonText}>SEND FORM</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
     padding: 20,
   },
-  label: {
-    fontSize: 18,
-    marginBottom: 5,
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 40,
+  },
+  inputRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginBottom: 20,
   },
   input: {
+    backgroundColor: '#f0f0f0',
     borderWidth: 1,
     borderColor: '#ddd',
     padding: 10,
-    fontSize: 18,
-    borderRadius: 6,
-    marginBottom: 15,
+    fontSize: 16,
+    borderRadius: 5,
+    flex: 1,
+    marginRight: 10,
   },
-  linksContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: 20,
+  messageInput: {
+    backgroundColor: '#f0f0f0',
+    borderWidth: 1,
+    borderColor: '#ddd',
+    padding: 10,
+    fontSize: 16,
+    borderRadius: 5,
+    height: 120,
+    width: '100%',
+    marginBottom: 20,
+    textAlignVertical: 'top', // align text to top for multiline input
   },
-  link: {
-    color: 'blue',
-    marginTop: 10,
+  button: {
+    borderWidth: 2,
+    borderColor: '#000',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
-export default Contact;
+export default ContactUs;
