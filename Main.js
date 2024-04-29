@@ -48,6 +48,7 @@ return (
                 selectedValue={product}
                 onValueChange={handleProductChange}
                 placeholder="Select a product"
+                width={200}
             >
                 {Object.keys(products).map((product) => (
                     <Select.Item label={product} value={product} key={product} />
@@ -55,11 +56,13 @@ return (
             </Select>
             {product && (
               <>
+            <Text>Selected Product: {product}</Text>
         <Text>What subproduct do you want to promote?</Text>
         <Select
             selectedValue={subProduct}
             onValueChange={handleSubProductChange}
             placeholder="Select a subproduct"
+            width={200}
         >
             {products[product].map((subProduct) => (
                 <Select.Item label={subProduct} value={subProduct} key={subProduct} />
@@ -67,6 +70,7 @@ return (
         </Select>
     </>
                 )}
+                <Text>Selected SubProduct: {subProduct}</Text>
                
     <Text>What is your budget in dollars?</Text>
    <Slider
