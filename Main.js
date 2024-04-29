@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { NativeBaseProvider, Box, Select, CheckIcon, Slider, Button as NBButton } from 'native-base';
-import { VStack, HStack } from 'native-base';
 
 import { Text } from 'react-native';
 
@@ -16,7 +15,6 @@ export default function Main() {
       cosmetics: ['lipstick', 'nailpolish', 'foundation', 'mirror'],
       electronics: ['smartphone', 'laptop', 'tablet', 'smartwatch'],
       clothing: ['tshirt', 'jeans', 'sweater', 'jacket'],
-      
   };
 
   const handleProductChange = (value) => {
@@ -26,6 +24,10 @@ export default function Main() {
 
   const handleSubProductChange = (value) => {
       setSubProduct(value);
+  };
+
+  const handleSliderChange = (value) => {
+    setSliderValue(value); // Update slider value
   };
 
 
@@ -65,32 +67,27 @@ return (
         </Select>
     </>
                 )}
-                <VStack space={4} alignItems="stretch">
+               
     <Text>What is your budget in dollars?</Text>
-    <Slider
-        w="3/4" // This sets the width of the slider to 75% of the parent component's width
-        defaultValue={100}
-        minValue={100}
-        maxValue={15000}
-        step={1}
-        onChangeEnd={(value) => setSliderValue(value)}
-    >
-        <Slider.Track>
+   <Slider
+          w="3/4"
+          maxW={300} // Change maxW to control the maximum width of the slider
+          defaultValue={sliderValue} // Set initial value of the slider
+          minValue={100}
+          maxValue={15000}
+          step={10}
+          onChange={(value) => handleSliderChange(value)} // Handle slider value change
+        >
+          <Slider.Track>
             <Slider.FilledTrack />
-        </Slider.Track>
-        <Slider.Thumb />
-    </Slider>
-    <HStack justifyContent="space-between">
-        <Text>$100</Text>
-        <Text>$15000</Text>
-    </HStack>
-    <Text>Current value: ${sliderValue}</Text>
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+        <Text>Current value: ${sliderValue}</Text>
     <NBButton onPress={handleSubmit}>Analyze</NBButton>
-</VStack>
-                <NBButton onPress={handleSubmit}>Analyze</NBButton>
                 
-            </Box>
-        </NativeBaseProvider>
+      </Box>
+    </NativeBaseProvider>
     );
 
 //     const [selectedCategory, setSelectedCategory] = useState('');
