@@ -1,65 +1,47 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'; // Ensure you have this installed
+import { View, Text, Image, StyleSheet, Linking, TouchableOpacity } from 'react-native';
 
-const Person = ({ image, name, description }) => (
-  <View style={styles.card}>
-    <Image source={{ uri: image }} style={styles.image} />
-    <Text style={styles.name}>{name}</Text>
-    <Text style={styles.description}>{description}</Text>
-    <View style={styles.socialMediaContainer}>
-      {/* Replace with actual onPress handlers to open social media links */}
-      <TouchableOpacity>
-        <Icon name="facebook" size={24} style={styles.icon} />
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Icon name="twitter" size={24} style={styles.icon} />
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Icon name="instagram" size={24} style={styles.icon} />
-      </TouchableOpacity>
+const Person = ({ image, name, description,  linkedin, github}) => (
+  <View style={styles.container}>
+    <Image style={styles.image} source={{ uri: image }} />
+    <View style={styles.textContainer}>
+      <Text style={styles.name}>{name}</Text>
+      <Text style={styles.description}>{description}</Text>
+      <Text style={styles.linkedin}>{description}</Text>
     </View>
   </View>
 );
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 20,
-    margin: 10,
-    width: 200, // Adjust the width as needed
+  container: {
+    flexDirection: 'row',
     alignItems: 'center',
-    elevation: 3,
-    shadowOffset: { width: 1, height: 1 },
-    shadowColor: '#333',
-    shadowOpacity: 0.3,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,  
+    elevation: 5
   },
   image: {
     width: 100,
     height: 100,
     borderRadius: 50,
-    marginVertical: 10,
+    marginRight: 10,
+  },
+  textContainer: {
+    flex: 1,
   },
   name: {
+    fontSize: 20,
     fontWeight: 'bold',
-    fontSize: 18,
-    textAlign: 'center',
+    marginBottom: 5,
   },
   description: {
-    fontSize: 14,
-    textAlign: 'center',
-    marginVertical: 10,
-  },
-  socialMediaContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-    marginTop: 10,
-  },
-  icon: {
-    marginHorizontal: 5,
-    color: '#333', // Change as per your color scheme
+    fontSize: 16,
   },
 });
 

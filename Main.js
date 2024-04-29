@@ -1,34 +1,121 @@
-import React,{useState} from "react";
-import { NativeBaseProvider, Box, Select, CheckIcon } from 'native-base';
-import Clothing from "./Clothing";
-import { Text, Button, Card } from '@rneui/themed';
+import React, { useState } from "react";
+import { NativeBaseProvider, Box, Select, CheckIcon, Slider, Button as NBButton } from 'native-base';
+import { VStack, HStack } from 'native-base';
+
+import { Text } from 'react-native';
+
+export default function Main() {
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [sliderValue, setSliderValue] = useState(100);
+
+  const [product, setProduct] = useState('');
+  const [subProduct, setSubProduct] = useState('');
+  const [budget, setBudget] = useState(100);
+
+  const products = {
+      cosmetics: ['lipstick', 'nailpolish', 'foundation', 'mirror'],
+      electronics: ['smartphone', 'laptop', 'tablet', 'smartwatch'],
+      clothing: ['tshirt', 'jeans', 'sweater', 'jacket'],
+      
+  };
+
+  const handleProductChange = (value) => {
+      setProduct(value);
+      setSubProduct(''); // Reset subproduct when product changes
+  };
+
+  const handleSubProductChange = (value) => {
+      setSubProduct(value);
+  };
 
 
-export default function Main({onCategorySelect}) {
+  const handleBudgetChange = (value) => {
+    setBudget(value);
+};
 
-    const [selectedCategory, setSelectedCategory] = useState('');
-    return (
-<NativeBaseProvider>
-    <Box width={200} alignItems="center" justifyContent="center" mx="auto" my={90}>
-        
-        <Clothing onCategorySelect={setSelectedCategory}/>
-        <Button
-                title="Analyze"
-                loading={false}
-                loadingProps={{ size: 'small', color: 'white' }}
-                buttonStyle={{
-                  backgroundColor: 'rgba(111, 202, 186, 1)',
-                  borderRadius: 5,
-                }}
-                titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
-                containerStyle={{
-                  height: 50,
-                  width: 200,
-                  marginVertical: 10,
-                }}
-                onPress={() => console.log('aye')}
-              />
-              </Box>
-              </NativeBaseProvider>
+const handleSubmit = () => {
+    // Send the product, subproduct, and budget to the backend
+};
+
+return (
+    <NativeBaseProvider>
+        <Box width={200} alignItems="center" justifyContent="center" mx="auto" my={90}>
+           
+            <Text>What product do you want to promote?</Text>
+            <Select
+                selectedValue={product}
+                onValueChange={handleProductChange}
+                placeholder="Select a product"
+            >
+                {Object.keys(products).map((product) => (
+                    <Select.Item label={product} value={product} key={product} />
+                ))}
+            </Select>
+            {product && (
+              <>
+        <Text>What subproduct do you want to promote?</Text>
+        <Select
+            selectedValue={subProduct}
+            onValueChange={handleSubProductChange}
+            placeholder="Select a subproduct"
+        >
+            {products[product].map((subProduct) => (
+                <Select.Item label={subProduct} value={subProduct} key={subProduct} />
+            ))}
+        </Select>
+    </>
+                )}
+                <VStack space={4} alignItems="stretch">
+    <Text>What is your budget in dollars?</Text>
+    <Slider
+        w="3/4" // This sets the width of the slider to 75% of the parent component's width
+        defaultValue={100}
+        minValue={100}
+        maxValue={15000}
+        step={1}
+        onChangeEnd={(value) => setSliderValue(value)}
+    >
+        <Slider.Track>
+            <Slider.FilledTrack />
+        </Slider.Track>
+        <Slider.Thumb />
+    </Slider>
+    <HStack justifyContent="space-between">
+        <Text>$100</Text>
+        <Text>$15000</Text>
+    </HStack>
+    <Text>Current value: ${sliderValue}</Text>
+    <NBButton onPress={handleSubmit}>Analyze</NBButton>
+</VStack>
+                <NBButton onPress={handleSubmit}>Analyze</NBButton>
+                
+            </Box>
+        </NativeBaseProvider>
     );
+
+//     const [selectedCategory, setSelectedCategory] = useState('');
+//     return (
+// <NativeBaseProvider>
+//     <Box width={200} alignItems="center" justifyContent="center" mx="auto" my={90}>
+        
+//         <Clothing onCategorySelect={setSelectedCategory}/>
+//         <Button
+//                 title="Analyze"
+//                 loading={false}
+//                 loadingProps={{ size: 'small', color: 'white' }}
+//                 buttonStyle={{
+//                   backgroundColor: 'rgba(111, 202, 186, 1)',
+//                   borderRadius: 5,
+//                 }}
+//                 titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
+//                 containerStyle={{
+//                   height: 50,
+//                   width: 200,
+//                   marginVertical: 10,
+//                 }}
+//                 onPress={() => console.log('aye')}
+//               />
+//               </Box>
+//               </NativeBaseProvider>
+//     );
               }
