@@ -13,9 +13,11 @@ import Contact from './Contact';
 import About from './About';
 import Main from './Main';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { enableScreens } from 'react-native-screens';
+
 
 const Tab = createBottomTabNavigator();
-
+enableScreens();
 export default function App({navigation}){
   
   return (
